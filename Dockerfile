@@ -5,10 +5,10 @@ RUN apk add --no-cache --update-cache bash
 RUN \
     apk add --no-cache --virtual .persistent-deps \
         unzip\
-    
+        wget\    
     && rm -rf /var/lib/apt/lists/*
 
-ENV PGWEB_VERSION 0.9.5
+ENV PGWEB_VERSION 0.9.6
 
 RUN \
   cd /tmp && \
