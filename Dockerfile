@@ -1,13 +1,8 @@
 FROM alpine
 MAINTAINER Daniel Johansson <donnex@donnex.net>
-RUN apk add --no-cache --update-cache bash
-
-RUN \
-    apk add --no-cache --virtual .persistent-deps \
+RUN apk add --no-cache --update-cache bash \
         unzip\
         wget\    
-    && rm -rf /var/lib/apt/lists/*
-
 ENV PGWEB_VERSION 0.9.6
 
 RUN \
