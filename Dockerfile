@@ -1,9 +1,11 @@
 FROM alpine
 MAINTAINER Daniel Johansson <donnex@donnex.net>
 
-RUN apt-get update && \
-    apt-get install -y wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+RUN \
+    apk add --no-cache --virtual .persistent-deps \
+        unzip\
+    
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PGWEB_VERSION 0.9.5
 
