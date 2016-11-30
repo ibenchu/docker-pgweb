@@ -1,21 +1,17 @@
 FROM alpine
-MAINTAINER Daniel Johansson <donnex@donnex.net>
+MAINTAINER HuadongZuo <admin@zuohuadong.cn>
 
-RUN RUN apk add --no-cache \
-        unzip
 ENV PGWEB_VERSION 0.9.6
 
 RUN \
+  apk update && \
+  apk add ca-certificates && \
+  update-ca-certificates && \
   cd /tmp && \
-  curl -fSL https://github.com/sosedoff/pgweb/releases/download/v$PGWEB_VERSION/pgweb_linux_amd64.zip -o pgweb_linux_amd64.zip && \
-  unzip pgweb_linux_amd64.zip -d /app && \
+  wget https://github.com/sosedoff/pgweb/releases/download/v$PGWEB_VERSION/pgweb_linux_amd64.zip && \
+  unzip pgweb_linux_amd64.zip -d /usr/bin && \
+  mv /usr/bin/pgweb_linux_amd64 /usr/bin/pgweb && \
   rm -f pgweb_linux_amd64.zip
 
-RUN useradd -ms /bin/sh pgweb
-
-USER pgweb
-WORKDIR /app
-
-EXPOSE 8080
-ENTRYPOINT ["/app/pgweb_linux_amd64"]
-CMD ["-s", "--bind=0.0.0.0", "--listen=8080"]
+EXPOSE 8081
+CMD ["/usr/bin/pgweb", "--bind=0.0.0.0", "--listen=8081"]
