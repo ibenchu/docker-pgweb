@@ -2,7 +2,7 @@ FROM alpine
 MAINTAINER Daniel Johansson <donnex@donnex.net>
 
 RUN RUN apk add --no-cache \
-        unzip\
+        unzip
 ENV PGWEB_VERSION 0.9.6
 
 RUN \
