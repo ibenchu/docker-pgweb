@@ -1,17 +1,17 @@
 FROM alpine
 MAINTAINER Daniel Johansson <donnex@donnex.net>
-RUN apk add --no-cache --update-cache bash \
+
+RUN RUN apk add --no-cache \
         unzip\
-        wget\    
 ENV PGWEB_VERSION 0.9.6
 
 RUN \
   cd /tmp && \
-  wget https://github.com/sosedoff/pgweb/releases/download/v$PGWEB_VERSION/pgweb_linux_amd64.zip && \
+  curl -fSL https://github.com/sosedoff/pgweb/releases/download/v$PGWEB_VERSION/pgweb_linux_amd64.zip -o pgweb_linux_amd64.zip && \
   unzip pgweb_linux_amd64.zip -d /app && \
   rm -f pgweb_linux_amd64.zip
 
-RUN useradd -ms /bin/bash pgweb
+RUN useradd -ms /bin/sh pgweb
 
 USER pgweb
 WORKDIR /app
