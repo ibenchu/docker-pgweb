@@ -1,5 +1,6 @@
 FROM alpine
 MAINTAINER Daniel Johansson <donnex@donnex.net>
+RUN apk add --no-cache --update-cache bash
 
 RUN \
     apk add --no-cache --virtual .persistent-deps \
