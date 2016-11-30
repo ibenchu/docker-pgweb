@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.3
 MAINTAINER HuadongZuo <admin@zuohuadong.cn>
 
 ENV PGWEB_VERSION 0.9.6
